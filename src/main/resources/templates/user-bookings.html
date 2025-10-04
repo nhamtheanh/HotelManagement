@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hóa đơn đặt phòng</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="mb-4">Hóa đơn đặt phòng của bạn</h1>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Số phòng</th>
+      <th>Ngày nhận phòng</th>
+      <th>Ngày trả phòng</th>
+      <th>Loại phòng</th>
+      <th>Số người</th>
+      <th>Giá phòng (TVND)</th>
+      <th>QR check in</th>
+      <th>QR check out</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+      <td th:text="${booking.roomNumber}"></td>
+      <td th:text="${booking.checkInDate}"></td>
+      <td th:text="${booking.checkOutDate}"></td>
+      <td th:text="${booking.roomType}"></td>
+      <td th:text="${booking.numberOfGuests}"></td>
+      <td th:text="${booking.price}"></td> <!-- Hiển thị giá phòng -->
+      <td>
+        <img th:src="'data:image/png;base64,' + ${booking.checkInQrCodeBase64}" alt="QR Code" style="width: 150px; height: 150px;">
+      </td>
+      <td>
+        <img th:src="'data:image/png;base64,' + ${booking.checkOutQrCodeBase64}" alt="Check-Out QR" style="width: 150px; height: 150px;">
+      </td>
+      <td>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a href="/" class="btn btn-primary">Quay lại trang chủ</a>
+</div>
+</body>
+</html>
